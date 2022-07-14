@@ -306,7 +306,7 @@ class Sandbox:
                     else: up = self.map[y - 1][x]
 
                     inWater = False
-                    if up == WATER or left == WATER or right == WATER or down == WATER:
+                    if [up, down, left, right].count(WATER) > 1:
                         inWater = True
                     
                     if down in [AIR, WATER]:

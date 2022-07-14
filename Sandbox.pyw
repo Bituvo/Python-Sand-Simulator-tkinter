@@ -448,8 +448,8 @@ class Sandbox:
             if [self.deleteX, self.deleteY] in self.waterCloners:
                 index = self.waterCloners.index([self.deleteX, self.deleteY])
                 del self.waterCloners[index]
-            if [x, y] in self.deleters:
-                index = self.deleters.index([x, y])
+            if [self.deleteX, self.deleteY] in self.deleters:
+                index = self.deleters.index([self.deleteX, self.deleteY])
                 del self.deleters[index]
             self.map[self.deleteY][self.deleteX] = AIR
             self.colors[self.deleteY][self.deleteX] = self.BG
@@ -517,6 +517,7 @@ class Sandbox:
         timeAfter = time()
         calculatedTime = 1 / self.TARGETFPS - (timeAfter - timeBefore)
         if calculatedTime < 1 / self.TARGETFPS: calculatedTime = 1 / self.TARGETFPS
+        if calculatedTime > 1 / self.TARGETFPS: calculatedTime = 0
         self.master.after(round(calculatedTime * 1000), self.frame)
 
 if __name__ == '__main__':
